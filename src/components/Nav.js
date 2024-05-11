@@ -55,11 +55,9 @@ const Nav = () => {
 
       <button
         type="button"
-        className={`${!loginInfo.email && 'hidden'} bg-center bg-cover mr-4 border-2 rounded-full shadow-sm size-14 hover:shadow-lg`}
-        style={{ backgroundImage: `url(${loginInfo.picture || 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'})` }}
         onClick={handleProfileClicked}
       >
-        {' '}
+        <img alt="avatar" className="mr-4 border-2 rounded-full shadow-sm w-14 h-14 size-14 hover:shadow-lg" src={loginInfo.picture || 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'} />
       </button>
 
       <div className={`${!profileClicked && 'hidden'} flex flex-col items-center justify-center absolute right-0 top-20`}>
