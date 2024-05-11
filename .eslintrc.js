@@ -1,10 +1,12 @@
+import stylistic from '@stylistic/eslint-plugin';
+
 module.exports = {
   env: {
     browser: true,
     es2021: true,
     jest: true, // jest 사용
   },
-  extends: ['airbnb', 'airbnb/hooks'],
+  extends: ['airbnb', 'plugin:prettier/recommended', 'prettier'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -17,10 +19,7 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': 'off',
-    'react/function-component-definition': [
-      2,
-      { namedComponents: 'arrow-function' },
-    ],
+    'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
     'react/jsx-props-no-spreading': 'off',
   },
 };

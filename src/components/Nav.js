@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {googleInstance} from '../api/axios.js';
+import { googleInstance } from '../api/axios';
 
 const Nav = () => {
   const [loginInfo, setLoginInfo] = useState({});
@@ -10,15 +10,17 @@ const Nav = () => {
   const navigate = useNavigate();
   useState(() => {
     if (accessToken && !loginInfo.email) {
-      googleInstance.get('/userinfo', {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }).then((res) => {
-        setLoginInfo(res.data);
-        localStorage.setItem('loginInfo', JSON.stringify(res.data));
-        navigate('/');
-      });
+      googleInstance
+        .get('/userinfo', {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((res) => {
+          setLoginInfo(res.data);
+          localStorage.setItem('loginInfo', JSON.stringify(res.data));
+          navigate('/');
+        });
     } else if (localStorage.getItem('loginInfo')) {
       setLoginInfo(JSON.parse(localStorage.getItem('loginInfo')));
     }
@@ -37,11 +39,12 @@ const Nav = () => {
 
   return (
     <div data-testid="test-nav" className="fixed top-0 z-50 flex items-center justify-between w-full h-28">
-      <button
-        type="button"
-        className="ml-4 h-14"
-      >
-        <img alt="포켓몬 로고" className="h-14" src="https://imguscdn.gamespress.com/cdn/files/PokemonAmerica/2019/07/09125735-7b00e266-d991-41da-9267-843e49ce62a7/Pokemon_Logo.jpg?w=240&mode=max&otf=y&quality=90&format=jpg&bgcolor=white&ex=2024-07-01+03%3A00%3A00&sky=caba7d25fcb155e91575db755e0eb78d70378256f82924d971f8982c74e4a388" />
+      <button type="button" className="ml-4 h-14">
+        <img
+          alt="포켓몬 로고"
+          className="h-14"
+          src="https://imguscdn.gamespress.com/cdn/files/PokemonAmerica/2019/07/09125735-7b00e266-d991-41da-9267-843e49ce62a7/Pokemon_Logo.jpg?w=240&mode=max&otf=y&quality=90&format=jpg&bgcolor=white&ex=2024-07-01+03%3A00%3A00&sky=caba7d25fcb155e91575db755e0eb78d70378256f82924d971f8982c74e4a388"
+        />
       </button>
       <button
         type="button"
@@ -53,14 +56,20 @@ const Nav = () => {
         Login
       </button>
 
-      <button
-        type="button"
-        onClick={handleProfileClicked}
-      >
-        <img alt="avatar" className="mr-4 border-2 rounded-full shadow-sm w-14 h-14 size-14 hover:shadow-lg" src={loginInfo.picture || 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'} />
+      <button type="button" onClick={handleProfileClicked} className={`${!loginInfo.email && 'hidden'}`}>
+        <img
+          alt="avatar"
+          className="mr-4 border-2 rounded-full shadow-sm w-14 h-14 size-14 hover:shadow-lg"
+          src={
+            loginInfo.picture
+            || 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+          }
+        />
       </button>
 
-      <div className={`${!profileClicked && 'hidden'} flex flex-col items-center justify-center absolute right-0 top-20`}>
+      <div
+        className={`${!profileClicked && 'hidden'} flex flex-col items-center justify-center absolute right-0 top-20`}
+      >
         <button
           type="button"
           onClick={() => {
@@ -72,7 +81,6 @@ const Nav = () => {
         </button>
       </div>
     </div>
-
   );
 };
 

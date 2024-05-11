@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "name": "bulbasaur",
+    "koreanName": "이상해씨",
+    "koreanFlavorText": "태어나서부터 얼마 동안은 등의 씨앗으로부터 영양을 공급받아 크게 성장한다.",
+    "colorName": "green"
+  },
+  {
+    "id": 2,
+    "name": "ivysaur",
+    "koreanName": "이상해풀",
+    "koreanFlavorText": "등의 봉오리가 부풀어 오르면 달콤한 냄새가 감돌기 시작한다. 큰 꽃이 필 조짐이다.",
+    "colorName": "green"
+  },
+  {
+    "id": 3,
+    "name": "venusaur",
+    "koreanName": "이상해꽃",
+    "koreanFlavorText": "비가 내린 다음 날은 등의 꽃향기가 강해진다. 향기에 이끌려 포켓몬이 모여든다.",
+    "colorName": "green"
+  },
+  {
+    "id": 4,
+    "name": "charmander",
+    "koreanName": "파이리",
+    "koreanFlavorText": "태어날 때부터 꼬리의 불꽃이 타오르고 있다. 불꽃이 꺼지면 그 생명이 다하고 만다.",
+    "colorName": "red"
+  },
+  {
+    "id": 5,
+    "name": "charmeleon",
+    "koreanName": "리자드",
+    "koreanFlavorText": "불타는 꼬리를 휘두르면 주위의 온도가 점점 올라가 상대를 괴롭게 한다.",
+    "colorName": "red"
+  },
+  {
+    "id": 6,
+    "name": "charizard",
+    "koreanName": "리자몽",
+    "koreanFlavorText": "지상 1400m까지 날개를 사용해 날 수 있다. 고열의 불꽃을 내뿜는다.",
+    "colorName": "red"
+  },
+  {
+    "id": 7,
+    "name": "squirtle",
+    "koreanName": "꼬부기",
+    "koreanFlavorText": "수면에서 물을 분사하여 먹이를 잡는다. 위험해지면 등껍질에 손발을 감추고 몸을 지킨다.",
+    "colorName": "blue"
+  },
+  {
+    "id": 8,
+    "name": "wartortle",
+    "koreanName": "어니부기",
+    "koreanFlavorText": "만 년의 수명을 가지고 있다고들 말한다. 치렁치렁한 꼬리는 장수의 상징으로서 인기가 있다.",
+    "colorName": "blue"
+  },
+  {
+    "id": 9,
+    "name": "blastoise",
+    "koreanName": "거북왕",
+    "koreanFlavorText": "등껍질에 분사구가 있어 로켓 같은 기세로 덤벼드는 굉장한 녀석이다.",
+    "colorName": "blue"
+  },
+  {
+    "id": 10,
+    "name": "caterpie",
+    "koreanName": "캐터피",
+    "koreanFlavorText": "발끝에는 어디든지 달라붙는 빨판이 있다. 필사적으로 나무 타기를 해서 나뭇잎을 먹는다.",
+    "colorName": "green"
+  },
+  {
+    "id": 11,
+    "name": "metapod",
+    "koreanName": "단데기",
+    "koreanFlavorText": "껍질이 단단해지기 전에 강한 충격을 받으면 속이 나와버리니 주의.",
+    "colorName": "green"
+  },
+  {
+    "id": 12,
+    "name": "butterfree",
+    "koreanName": "버터플",
+    "koreanFlavorText": "물을 튕겨내는 가루가 날개를 보호하고 있다. 비가 오는 날에도 하늘을 날 수 있다.",
+    "colorName": "white"
+  },
+  {
+    "id": 13,
+    "name": "weedle",
+    "koreanName": "뿔충이",
+    "koreanFlavorText": "독침이 매우 강력하다. 눈에 띄는 몸의 색깔은 상대방을 경계시키기 위해서다.",
+    "colorName": "brown"
+  },
+  {
+    "id": 14,
+    "name": "kakuna",
+    "koreanName": "딱충이",
+    "koreanFlavorText": "천적에게 발견되지 않도록 잎사귀 뒷면이나 가지의 틈새에 숨어서 진화할 때를 기다린다.",
+    "colorName": "yellow"
+  },
+  {
+    "id": 15,
+    "name": "beedrill",
+    "koreanName": "독침붕",
+    "koreanFlavorText": "집단으로 나타나기도 한다. 맹렬한 스피드로 날아 엉덩이의 독침으로 마구 찌른다.",
+    "colorName": "yellow"
+  },
+  {
+    "id": 16,
+    "name": "pidgey",
+    "koreanName": "구구",
+    "koreanFlavorText": "싸움을 좋아하지 않는 얌전한 성격이지만 어설프게 건드리면 강력한 반격을 당하게 된다.",
+    "colorName": "brown"
+  },
+  {
+    "id": 17,
+    "name": "pidgeotto",
+    "koreanName": "피죤",
+    "koreanFlavorText": "넓은 영역을 가지고 있어 침입한 방해자는 철저하게 쪼아버린다.",
+    "colorName": "brown"
+  },
+  {
+    "id": 18,
+    "name": "pidgeot",
+    "koreanName": "피죤투",
+    "koreanFlavorText": "아름다운 날개를 펼쳐 상대를 위협한다. 마하2로 하늘을 날아다닌다.",
+    "colorName": "brown"
+  },
+  {
+    "id": 19,
+    "name": "rattata",
+    "koreanName": "꼬렛",
+    "koreanFlavorText": "송곳니는 길고 날카롭다. 평생 자라나기 때문에 단단한 것을 갉아서 깎는다.",
+    "colorName": "purple"
+  },
+  {
+    "id": 20,
+    "name": "raticate",
+    "koreanName": "레트라",
+    "koreanFlavorText": "뒷다리에 달린 물갈퀴를 사용하여 강을 건너 넓은 범위에서 먹이를 찾아다닌다.",
+    "colorName": "brown"
+  }
+]
