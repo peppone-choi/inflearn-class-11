@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import googleInstance from '../api/axios';
+import {googleInstance} from '../api/axios.js';
 
 const Nav = () => {
   const [loginInfo, setLoginInfo] = useState({});
