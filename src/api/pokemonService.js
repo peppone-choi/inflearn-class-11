@@ -16,6 +16,5 @@ export const findPokemonByNumber = async (pokemonNumber) => {
   // id, pic, color, types, weight, height, officialArtwork, stats 등
   // TODO: 데이터 바인딩
   const data = await pokemonInstance.get(`/pokemon/${pokemonNumber}`);
-  console.log(data);
   return data;
 };
