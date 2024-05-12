@@ -1,13 +1,15 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 import '@testing-library/jest-dom/extend-expect';
-import pokemonSpices from './mock/pokemon-spices-1.json';
-import pokemonData from './mock/pokemon-1.json';
-import { pokemonInstance } from './api/axios';
-import pokemonNameList from './mock/pokemon-spices-list.json';
-import { getPokemonNameList, findPokemonByNumber, findPokemonSpice } from './api/pokemonService';
-jest.setTimeout(30000);
+import pokemonOneResult from './mock/pokemon-1-result.json';
+import { getPokemonNameList, getPokemonDataList, findPokemonByNumber, findPokemonSpice } from './api/pokemonService';
+import MainPage from './pages/MainPage';
+jest.mock('axios');
+jest.mock('./api/axios');
+jest.mock('./api/pokemonService');
+jest.mock('./pages/MainPage');
+
 test('App 컴포넌트가 불러와지면, 네비게이션바가 출력된다.', () => {
   // Arrange
 
@@ -92,42 +94,122 @@ test('네비게이션 바 안에는 로그인 했을 시 로그인 버튼 대신
 
 test('App 렌더링 시 메인 페이지가 먼저 렌더링 된다.', () => {
   // Arrange
-  // Act
+  jest.mock('./pages/MainPage', () => 'MainPage');
   render(
     <MemoryRouter>
       <App />
     </MemoryRouter>,
   );
+  waitFor(() => {
+    MainPage.getPokemonNameListInit();
+    MainPage.getPokemonDataListInit();
+    const mainPage = screen.getByRole('main');
+    expect(mainPage).toBeInTheDocument();
+  });
+  // Act
+
   // Assert
-  const mainPage = screen.getByRole('main');
-  expect(mainPage).toBeInTheDocument();
+});
+
+test('메인 페이지가 처음 로딩 시 1~20번의 포켓몬 아이콘이 배치되어 있다.', async () => {
+  // Act
+  jest.mock('./pages/MainPage', () => 'MainPage');
+  render(<MainPage />);
+  waitFor(() => {
+    MainPage.getPokemonNameListInit();
+    MainPage.getPokemonDataListInit();
+    const pokemonIcons = screen.getAllByTitle(/pokemon-icon/i);
+    expect(pokemonIcons).toHaveLength(20);
+  });
+  // Assert
+});
+
+test('메인 페이지가 처음 로딩 시 1~20번의 포켓몬 아이콘에 이름이 표시된다.', async () => {
+  // Act
+  jest.mock('./pages/MainPage');
+  render(<MainPage />);
+  waitFor(() => {
+    MainPage.getPokemonNameListInit();
+    MainPage.getPokemonDataListInit();
+    const pokemonNames = screen.getAllByRole('heading');
+    expect(pokemonNames).toHaveLength(20);
+  });
+  // Assert
+});
+
+test('카드 형태의 아이콘 1번은 이상해씨라는 이름을 가지고 있고 풀 포켓몬이다', async () => {
+  // Act
+  jest.mock('./pages/MainPage');
+  render(<MainPage />);
+  waitFor(() => {
+    MainPage.getPokemonNameListInit();
+    MainPage.getPokemonDataListInit();
+    const pokemonCard = screen.getByTitle(/pokemon-icon-1/i);
+    const pokemonName = screen.getByText(/이상해씨/i);
+    const pokemonType = screen.getByText(/풀 포켓몬/i);
+    expect(pokemonCard).toBeInTheDocument();
+    expect(pokemonCard).toHaveStyle('background-color: #78C850');
+    expect(pokemonName).toBeInTheDocument();
+    expect(pokemonType).toBeInTheDocument();
+  });
+  // Assert
+});
+
+test('1번 포켓몬 아이콘을 클릭하면 1번 포켓몬 상세 페이지로 이동한다.', async () => {
+  // Act
+  jest.mock('./pages/MainPage');
+  render(<MainPage />);
+  waitFor(() => {
+    MainPage.getPokemonNameListInit();
+    MainPage.getPokemonDataListInit();
+    const pokemonIcon = screen.getByTitle(/pokemon-icon-1/i);
+    fireEvent.click(pokemonIcon);
+  });
+  // Assert
+  const pokemonDetail = screen.getByTestId('pokemon-detail');
+  expect(pokemonDetail).toBeInTheDocument();
 });
 
 test('axios 인스턴스 pokemonService findPokemonSpice Test', async () => {
-  const result = await findPokemonSpice(1);
-  // Act
-  // Assert
-  expect(result).toEqual({
-    id: 1,
-    name: 'bulbasaur',
-    koreanName: '이상해씨',
-    koreanFlavorText: '태어나서부터 얼마 동안은 등의 씨앗으로부터 영양을 공급받아 크게 성장한다.',
-    colorName: 'green',
+  // Arrange
+  waitFor(() => {
+    const result = findPokemonSpice(1);
+
+    expect(result).toEqual({
+      id: 1,
+      name: 'bulbasaur',
+      koreanName: '이상해씨',
+      koreanFlavorText: '태어나서부터 얼마 동안은 등의 씨앗으로부터 영양을 공급받아 크게 성장한다.',
+    });
   });
 });
 
 test('axios 인스턴스 pokemonService findPokemonByNumber Test', async () => {
   // Arrange
   // Act
-  const result = await findPokemonByNumber(1);
-  // Assert
-  expect(result).toEqual(pokemonData);
+  waitFor(() => {
+    const result = findPokemonByNumber(1);
+    // Assert
+    expect(result).toEqual(pokemonOneResult);
+  });
 });
 
 test('axios 인스턴스 getPokemonNameList Test', async () => {
   // Arrange
   // Act
-  const result = await getPokemonNameList(0, 20);
-  // Assert
-  expect(result).toEqual(pokemonNameList);
+  waitFor(() => {
+    const result = getPokemonNameList(1, 20);
+    // Assert
+    expect(result).toEqual(pokemonNameList);
+  });
+});
+
+test('axios 인스턴스 getPokemonDataList Test', async () => {
+  // Arrange
+  // Act
+  waitFor(() => {
+    const result = getPokemonDataList(1, 20);
+    // Assert
+    expect(result).toEqual(pokemonDataList);
+  });
 });

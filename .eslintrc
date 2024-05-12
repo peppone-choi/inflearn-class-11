@@ -2,16 +2,16 @@
   "env": {
     "browser": true,
     "es2021": true,
-    "jest": true // jest 사용
+    "jest": true, // jest 사용
   },
   "extends": ["airbnb", "plugin:prettier/recommended", "prettier"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
     },
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
   },
   "plugins": ["import", "react", "react-hooks"],
   "rules": {
@@ -19,6 +19,7 @@
     "react/jsx-filename-extension": 0,
     "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
     "react/jsx-props-no-spreading": 0,
-    "react/prop-types": 0
-  }
+    "react/prop-types": 0,
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+  },
 }

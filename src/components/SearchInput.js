@@ -6,7 +6,7 @@ const SearchInput = ({ search, setSearch }) => {
   };
 
   return (
-    <div className="mt-40 flex">
+    <div className="flex mt-40">
       <input
         type="text"
         className="w-[48em] text-center border-2 border-sky-800 rounded-l-full text-2xl p-4 font-semibold"
@@ -14,7 +14,7 @@ const SearchInput = ({ search, setSearch }) => {
         value={search}
         onChange={handleChange}
       />
-      <button type="button" className="w-48 bg-sky-800 text-white rounded-r-full text-2xl p-4 font-semibold">
+      <button type="button" className="w-48 p-4 text-2xl font-semibold text-white rounded-r-full bg-sky-800">
         검색
       </button>
     </div>

@@ -1,0 +1,201 @@
+{
+  "color": [
+    {
+      "type": "normal",
+      "name": "노말",
+      "hex": {
+        "light": "C1C2C1",
+        "normal": "9FA19F",
+        "dark": "676967"
+      }
+    },
+    {
+      "type": "fighting",
+      "name": "격투",
+      "hex": {
+        "light": "FFAC59",
+        "normal": "FF8000",
+        "dark": "A65300"
+      }
+    },
+    {
+      "type": "flying",
+      "name": "비행",
+      "hex": {
+        "light": "ADD2F5",
+        "normal": "81B9EF",
+        "dark": "54789B"
+      }
+    },
+    {
+      "type": "poison",
+      "name": "독",
+      "hex": {
+        "light": "B884DD",
+        "normal": "9141CB",
+        "dark": "5E2A84"
+      }
+    },
+    {
+      "type": "ground",
+      "name": "땅",
+      "hex": {
+        "light": "B88E6F",
+        "normal": "915121",
+        "dark": "5E3515"
+      }
+    },
+    {
+      "type": "rock",
+      "name": "바위",
+      "hex": {
+        "light": "CBC7AD",
+        "normal": "AFA981",
+        "dark": "726E54"
+      }
+    },
+    {
+      "type": "bug",
+      "name": "벌레",
+      "hex": {
+        "light": "B8C26A",
+        "normal": "91A119",
+        "dark": "5E6910"
+      }
+    },
+    {
+      "type": "ghost",
+      "name": "고스트",
+      "hex": {
+        "light": "A284A2",
+        "normal": "704170",
+        "dark": "492A49"
+      }
+    },
+    {
+      "type": "steel",
+      "name": "강철",
+      "hex": {
+        "light": "98C2D1",
+        "normal": "60A1B8",
+        "dark": "3E6978"
+      }
+    },
+    {
+      "type": "fire",
+      "name": "불꽃",
+      "hex": {
+        "light": "EF7374",
+        "normal": "E62829",
+        "dark": "961A1B"
+      }
+    },
+    {
+      "type": "water",
+      "name": "물",
+      "hex": {
+        "light": "74ACF5",
+        "normal": "2980EF",
+        "dark": "1B539B"
+      }
+    },
+    {
+      "type": "grass",
+      "name": "풀",
+      "hex": {
+        "light": "82C274",
+        "normal": "3FA129",
+        "dark": "29691B"
+      }
+    },
+    {
+      "type": "electric",
+      "name": "전기",
+      "hex": {
+        "light": "FCD659",
+        "normal": "FAC000",
+        "dark": "A37D00"
+      }
+    },
+    {
+      "type": "psychic",
+      "name": "에스퍼",
+      "hex": {
+        "light": "F584A8",
+        "normal": "EF4179",
+        "dark": "9B2A4F"
+      }
+    },
+    {
+      "type": "ice",
+      "name": "얼음",
+      "hex": {
+        "light": "81DFF7",
+        "normal": "3DCEF3",
+        "dark": "28869E"
+      }
+    },
+    {
+      "type": "dragon",
+      "name": "드래곤",
+      "hex": {
+        "light": "8D98EC",
+        "normal": "5060E1",
+        "dark": "343E92"
+      }
+    },
+    {
+      "type": "dark",
+      "name": "악",
+      "hex": {
+        "light": "998B8C",
+        "normal": "624D4E",
+        "dark": "403233"
+      }
+    },
+    {
+      "type": "fairy",
+      "name": "페어리",
+      "hex": {
+        "light": "F5A2F5",
+        "normal": "EF70EF",
+        "dark": "9B499B"
+      }
+    },
+    {
+      "type": "stellar",
+      "name": "스텔라",
+      "tag": [
+        { "hex": "ceb344", "from": 0, "to": 8 },
+        { "hex": "d09949", "from": 8, "to": 15 },
+        { "hex": "ce684c", "from": 15, "to": 19 },
+        { "hex": "c9606e", "from": 19, "to": 22 },
+        { "hex": "b975a9", "from": 22, "to": 25 },
+        { "hex": "9f5b89", "from": 25, "to": 28 },
+        { "hex": "694d94", "from": 28, "to": 31 },
+        { "hex": "63537a", "from": 31, "to": 35 },
+        { "hex": "596677", "from": 35, "to": 42 },
+        { "hex": "5f708d", "from": 42, "to": 50 },
+        { "hex": "4887be", "from": 50, "to": 58 },
+        { "hex": "3d9cc4", "from": 58, "to": 65 },
+        { "hex": "428dc4", "from": 65, "to": 69 },
+        { "hex": "457cbb", "from": 69, "to": 72 },
+        { "hex": "4095b9", "from": 72, "to": 75 },
+        { "hex": "61b7c2", "from": 75, "to": 78 },
+        { "hex": "56c267", "from": 78, "to": 81 },
+        { "hex": "a5b65b", "from": 81, "to": 85 },
+        { "hex": "aaaf80", "from": 85, "to": 92 },
+        { "hex": "b69867", "from": 92, "to": 0 }
+      ]
+    },
+    {
+      "type": "unknown",
+      "name": "???",
+      "hex": {
+        "light": "9DC1B7",
+        "normal": "68A090",
+        "dark": "44685E"
+      }
+    }
+  ]
+}
