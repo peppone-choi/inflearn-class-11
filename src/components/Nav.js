@@ -38,7 +38,7 @@ const Nav = () => {
   };
 
   return (
-    <div data-testid="test-nav" className="fixed top-0 z-50 flex items-center justify-between w-full h-28">
+    <div data-testid="test-nav" className="sticky top-0 flex items-center justify-between w-full h-28">
       <button type="button" className="ml-4 h-14">
         <img
           alt="포켓몬 로고"
@@ -61,8 +61,8 @@ const Nav = () => {
           alt="avatar"
           className="mr-4 border-2 rounded-full shadow-sm w-14 h-14 size-14 hover:shadow-lg"
           src={
-            loginInfo.picture
-            || 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+            loginInfo.picture ||
+            'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
           }
         />
       </button>

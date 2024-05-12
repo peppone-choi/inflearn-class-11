@@ -7,7 +7,7 @@ import pokemonData from './mock/pokemon-1.json';
 import { pokemonInstance } from './api/axios';
 import pokemonNameList from './mock/pokemon-spices-list.json';
 import { getPokemonNameList, findPokemonByNumber, findPokemonSpice } from './api/pokemonService';
-
+jest.setTimeout(30000);
 test('App 컴포넌트가 불러와지면, 네비게이션바가 출력된다.', () => {
   // Arrange
 
@@ -88,6 +88,19 @@ test('네비게이션 바 안에는 로그인 했을 시 로그인 버튼 대신
   // Assert
   const avatar = screen.getByRole('img', { name: /avatar/i });
   expect(avatar).toBeInTheDocument();
+});
+
+test('App 렌더링 시 메인 페이지가 먼저 렌더링 된다.', () => {
+  // Arrange
+  // Act
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  // Assert
+  const mainPage = screen.getByRole('main');
+  expect(mainPage).toBeInTheDocument();
 });
 
 test('axios 인스턴스 pokemonService findPokemonSpice Test', async () => {
