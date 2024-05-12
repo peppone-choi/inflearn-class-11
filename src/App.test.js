@@ -5,6 +5,7 @@ import '@testing-library/jest-dom/extend-expect';
 import pokemonOneResult from './mock/pokemon-1-result.json';
 import { getPokemonNameList, getPokemonDataList, findPokemonByNumber, findPokemonSpice } from './api/pokemonService';
 import MainPage from './pages/MainPage';
+
 jest.mock('axios');
 jest.mock('./api/axios');
 jest.mock('./api/pokemonService');
@@ -94,7 +95,6 @@ test('네비게이션 바 안에는 로그인 했을 시 로그인 버튼 대신
 
 test('App 렌더링 시 메인 페이지가 먼저 렌더링 된다.', () => {
   // Arrange
-  jest.mock('./pages/MainPage', () => 'MainPage');
   render(
     <MemoryRouter>
       <App />
@@ -113,7 +113,6 @@ test('App 렌더링 시 메인 페이지가 먼저 렌더링 된다.', () => {
 
 test('메인 페이지가 처음 로딩 시 1~20번의 포켓몬 아이콘이 배치되어 있다.', async () => {
   // Act
-  jest.mock('./pages/MainPage', () => 'MainPage');
   render(<MainPage />);
   waitFor(() => {
     MainPage.getPokemonNameListInit();
@@ -126,7 +125,6 @@ test('메인 페이지가 처음 로딩 시 1~20번의 포켓몬 아이콘이 �
 
 test('메인 페이지가 처음 로딩 시 1~20번의 포켓몬 아이콘에 이름이 표시된다.', async () => {
   // Act
-  jest.mock('./pages/MainPage');
   render(<MainPage />);
   waitFor(() => {
     MainPage.getPokemonNameListInit();
@@ -139,7 +137,6 @@ test('메인 페이지가 처음 로딩 시 1~20번의 포켓몬 아이콘에 �
 
 test('카드 형태의 아이콘 1번은 이상해씨라는 이름을 가지고 있고 풀 포켓몬이다', async () => {
   // Act
-  jest.mock('./pages/MainPage');
   render(<MainPage />);
   waitFor(() => {
     MainPage.getPokemonNameListInit();
@@ -157,7 +154,6 @@ test('카드 형태의 아이콘 1번은 이상해씨라는 이름을 가지고 
 
 test('1번 포켓몬 아이콘을 클릭하면 1번 포켓몬 상세 페이지로 이동한다.', async () => {
   // Act
-  jest.mock('./pages/MainPage');
   render(<MainPage />);
   waitFor(() => {
     MainPage.getPokemonNameListInit();

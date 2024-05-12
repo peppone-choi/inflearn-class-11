@@ -64,9 +64,9 @@ export const findPokemonByNumber = async (pokemonNumber) => {
   }
 };
 
-export const getPokemonNameList = async (offset, limit) => {
+export const getPokemonNameList = async (start, limit) => {
   try {
-    const { results } = (await pokemonInstance.get(`/pokemon-species/?offset=${offset - 1}&limit=${limit}`)).data;
+    const { results } = (await pokemonInstance.get(`/pokemon-species/?offset=${start - 1}&limit=${limit}`)).data;
     const promises = [];
     results.forEach((result) => {
       const number = result.url.split('/')[6];
