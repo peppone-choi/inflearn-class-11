@@ -8,7 +8,7 @@ import pokemonTypes from '../assets/pokemon-type.json';
 const MainPage = () => {
   const [search, setSearch] = React.useState('');
   const [pokemonData, setPokemonData] = React.useState([]);
-  // const [renderedPokemonNumber, setRenderedPokemonNumber] = React.useState(20);
+  const [renderedPokemonNumber, setRenderedPokemonNumber] = React.useState(20);
   const getPokemonUrlListInit = async () => {
     const pokemonSpeciesList = await getPokemonSpeciesList(
       pokemonInitConfig.pokemonInitStart,
@@ -28,23 +28,25 @@ const MainPage = () => {
     setPokemonData(urlList);
   };
 
-  // const morePokemon = async () => {
-  //   const pokemonSpeciesList = await getPokemonSpeciesList(renderedPokemonNumber + 1, 20);
-  //   const pokemonDataList = await getPokemonDataList(renderedPokemonNumber + 1, 20);
-  //   const urlList = pokemonDataList.map((object, index) => {
-  //     return {
-  //       name: object.name,
-  //       speciesUrl: pokemonSpeciesList[index].url,
-  //       dataUrl: pokemonDataList[index].url,
-  //     };
-  //   });
-  //   setPokemonData([...pokemonData, ...urlList]);
-  //   setRenderedPokemonNumber(renderedPokemonNumber + 20);
-  // };
+  const morePokemon = async () => {
+    const pokemonSpeciesList = await getPokemonSpeciesList(renderedPokemonNumber + 1, 20);
+    const pokemonDataList = await getPokemonDataList(renderedPokemonNumber + 1, 20);
+    const urlList = pokemonDataList.map((object, index) => {
+      return {
+        name: object.name,
+        speciesUrl: pokemonSpeciesList[index].url,
+        dataUrl: pokemonDataList[index].url,
+      };
+    });
+    setPokemonData([...pokemonData, ...urlList]);
+    setRenderedPokemonNumber(renderedPokemonNumber + 20);
+  };
 
   useEffect(() => {
     getPokemonUrlListInit();
   }, []);
+
+  useEffect(() => {}, [renderedPokemonNumber]);
 
   return (
     <div className="block">
@@ -58,14 +60,15 @@ const MainPage = () => {
           })}
         </div>
       </div>
-      {/* <div className="flex justify-center">
+      <div className="flex justify-center">
         <button
           onClick={() => morePokemon()}
           type="button"
           className="p-4 mb-4 text-xl font-semibold text-white rounded-full w-80 bg-sky-800"
         >
-          More Pokemons!
-        </button> */}
+          More Pokemons! Pika!
+        </button>
+      </div>
     </div>
   );
 };
