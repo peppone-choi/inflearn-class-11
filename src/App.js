@@ -11,7 +11,7 @@ const App = () => (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<MainPage />} />
-        <Route path="/:id" element={<InfoPage typeData={pokemonTypes} />} />
+        <Route path=":id" element={<InfoPage typeData={pokemonTypes} />} />
       </Route>
     </Routes>
   </div>

@@ -50,12 +50,16 @@ const Nav = () => {
     setProfileClicked(!profileClicked);
   };
 
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
   return (
     <div
       data-testid="test-nav"
       className={`${scroll && 'bg-black'} sticky top-0 flex items-center justify-between w-full h-20`}
     >
-      <button type="button" className="ml-4 h-14">
+      <button type="button" onClick={() => handleLogoClick()} className="ml-4 h-14">
         <img
           alt="포켓몬 로고"
           className="h-14"
