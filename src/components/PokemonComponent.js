@@ -17,14 +17,14 @@ const PokemonComponent = ({ pokemonNameData, pokemonData }) => {
   const typeColor = typeName === 'stellar' ? typeInfo.tag : typeInfo.hex;
 
   return (
-    <BackgroundDiv color={`#${typeColor.dark}`}>
+    <BackgroundDiv color={`#${typeColor.dark}`} data-testid={`pokemon-card-${id}`}>
       <div className="flex justify-end mx-2 mt-2 text-sm">
         <p>#{String(id).padStart(3, '0')}</p>
       </div>
       <div className="flex justify-center mb-4">
-        <img role="figure" className="size-44" key={`pokemon-icon-${id}-${name}`} src={image} alt="pokemon-icon" />
+        <img role="figure" className="size-44" key={`pokemon-${id}-${name}`} src={image} alt="포켓몬 이미지" />
       </div>
-      <div className="">
+      <div aria-labelledby="heading">
         <h1>{koreanName}</h1>
       </div>
       <div>

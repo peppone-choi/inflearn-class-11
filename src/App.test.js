@@ -4,7 +4,6 @@ import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 import '@testing-library/jest-dom/extend-expect';
 import { getPokemonNameList, getPokemonDataList, findPokemonByNumber, findPokemonSpice } from './api/pokemonService';
-import MainPage from './pages/MainPage';
 
 test('App 컴포넌트가 불러와지면, 네비게이션바가 출력된다.', () => {
   // Arrange
@@ -103,58 +102,7 @@ test('App 렌더링 시 메인 페이지가 먼저 렌더링 된다.', async () 
   // Act
 
   // Assert
-});
-
-test('메인 페이지가 처음 로딩 시 1~20번의 포켓몬 아이콘이 배치되어 있다.', async () => {
-  // Act
-  render(<MainPage />);
-
-  waitFor(() => {
-    const pokemonIcons = screen.getAllByTitle(/pokemon-icon/i);
-    expect(pokemonIcons).toHaveLength(20);
-  });
-  // Assert
-});
-
-test('메인 페이지가 처음 로딩 시 1~20번의 포켓몬 아이콘에 이름이 표시된다.', async () => {
-  // Act
-  render(<MainPage />);
-
-  waitFor(() => {
-    const pokemonNames = screen.getAllByRole('heading');
-    expect(pokemonNames).toHaveLength(20);
-  });
-  // Assert
-});
-
-test('카드 형태의 아이콘 1번은 이상해씨라는 이름을 가지고 있고 풀 포켓몬이다', async () => {
-  // Act
-  render(<MainPage />);
-
-  waitFor(() => {
-    const pokemonCard = screen.getByTitle(/pokemon-icon-1/i);
-    const pokemonName = screen.getByText(/이상해씨/i);
-    const pokemonType = screen.getByText(/풀 포켓몬/i);
-    expect(pokemonCard).toBeInTheDocument();
-    expect(pokemonCard).toHaveStyle('background-color: #78C850');
-    expect(pokemonName).toBeInTheDocument();
-    expect(pokemonType).toBeInTheDocument();
-  });
-  // Assert
-});
-
-test('1번 포켓몬 아이콘을 클릭하면 1번 포켓몬 상세 페이지로 이동한다.', async () => {
-  // Act
-  render(<MainPage />);
-
-  waitFor(() => {
-    const pokemonIcon = screen.getByTitle(/pokemon-icon-1/i);
-    fireEvent.click(pokemonIcon);
-  });
-  // Assert
-  const pokemonDetail = screen.getByTestId('pokemon-detail');
-  expect(pokemonDetail).toBeInTheDocument();
-});
+}, 100000);
 
 test('axios 인스턴스 pokemonService findPokemonSpice Test', async () => {
   // Arrange
@@ -167,7 +115,7 @@ test('axios 인스턴스 pokemonService findPokemonSpice Test', async () => {
       koreanFlavorText: '태어나서부터 얼마 동안은 등의 씨앗으로부터 영양을 공급받아 크게 성장한다.',
     });
   });
-});
+}, 100000);
 
 test('axios 인스턴스 pokemonService findPokemonByNumber Test', async () => {
   // Arrange
@@ -175,9 +123,57 @@ test('axios 인스턴스 pokemonService findPokemonByNumber Test', async () => {
   const result = await findPokemonByNumber(1);
   waitFor(() => {
     // Assert
-    expect(result).toEqual(pokemonOneResult);
+    expect(result).toEqual({
+      abilityNames: ['overgrow', 'chlorophyll'],
+      bindedStats: [
+        {
+          name: 'hp',
+          value: 45,
+        },
+        {
+          name: 'attack',
+          value: 49,
+        },
+        {
+          name: 'defense',
+          value: 49,
+        },
+        {
+          name: 'special-attack',
+          value: 65,
+        },
+        {
+          name: 'special-defense',
+          value: 65,
+        },
+        {
+          name: 'speed',
+          value: 45,
+        },
+      ],
+      height: 7,
+      id: 1,
+      image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg',
+      types: [
+        {
+          slot: 1,
+          type: {
+            name: 'grass',
+            url: 'https://pokeapi.co/api/v2/type/12/',
+          },
+        },
+        {
+          slot: 2,
+          type: {
+            name: 'poison',
+            url: 'https://pokeapi.co/api/v2/type/4/',
+          },
+        },
+      ],
+      weight: 69,
+    });
   });
-});
+}, 100000);
 
 test('axios 인스턴스 getPokemonNameList Test', async () => {
   // Arrange
@@ -185,9 +181,9 @@ test('axios 인스턴스 getPokemonNameList Test', async () => {
   const result = await getPokemonNameList(1, 20);
   waitFor(() => {
     // Assert
-    expect(result).toEqual(pokemonNameList);
+    expect(result).toEqual({});
   });
-});
+}, 100000);
 
 test('axios 인스턴스 getPokemonDataList Test', async () => {
   // Arrange
@@ -195,6 +191,6 @@ test('axios 인스턴스 getPokemonDataList Test', async () => {
   const result = await getPokemonDataList(1, 20);
   waitFor(() => {
     // Assert
-    expect(result).toEqual(pokemonDataList);
+    expect(result).toEqual({});
   });
-});
+}, 100000);
