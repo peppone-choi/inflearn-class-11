@@ -1,5 +1,25 @@
 import { pokemonInstance } from './axios';
 
+export const getPokemonDataById = async (id) => {
+  try {
+    const { data } = await pokemonInstance.get(`/pokemon/${id}`);
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export const getPokemonSpeciesById = async (id) => {
+  try {
+    const { data } = await pokemonInstance.get(`/pokemon-species/${id}`);
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 export const bindPokemonSpecies = (data) => {
   try {
     const { id, name, names, flavor_text_entries: flavorTexts } = data;
