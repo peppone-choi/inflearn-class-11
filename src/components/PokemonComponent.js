@@ -58,6 +58,7 @@ const PokemonComponent = ({ urls, typeData }) => {
         aria-labelledby="heading"
       >
         <h1>{pokemonSpecies.koreanName}</h1>
+        <h2 className="text-sm">{pokemonSpecies.name}</h2>
       </PokemonNameDiv>
     </BackgroundDiv>
   );
