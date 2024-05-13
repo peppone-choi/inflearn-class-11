@@ -1,32 +1,32 @@
 import React, { useEffect } from 'react';
 import SearchInput from '../components/SearchInput';
-import { getPokemonDataList, getPokemonNameList } from '../api/pokemonService';
+import { getPokemonDataList, getPokemonSpeciesList } from '../api/pokemonService';
 import pokemonInitConfig from '../config/pokemon-init.json';
 import PokemonComponent from '../components/PokemonComponent';
 
 const MainPage = () => {
   const [search, setSearch] = React.useState('');
   const [pokemonData, setPokemonData] = React.useState([]);
-  const [pokemonNameData, setPokemonNameData] = React.useState([]);
-  const getPokemonNameListInit = async () => {
-    const pokemonNameList = await getPokemonNameList(
+  const getPokemonUrlListInit = async () => {
+    const pokemonSpeciesList = await getPokemonSpeciesList(
       pokemonInitConfig.pokemonInitStart,
       pokemonInitConfig.pokemonInitEnd,
     );
-    setPokemonNameData(pokemonNameList);
-  };
-
-  const getPokemonDataListInit = async () => {
     const pokemonDataList = await getPokemonDataList(
       pokemonInitConfig.pokemonInitStart,
       pokemonInitConfig.pokemonInitEnd,
     );
-    setPokemonData(pokemonDataList);
+    const urlList = pokemonDataList.map((object, index) => {
+      return {
+        name: object.name,
+        speciesUrl: pokemonSpeciesList[index].url,
+        dataUrl: pokemonDataList[index].url,
+      };
+    });
+    setPokemonData(urlList);
   };
-
   useEffect(() => {
-    getPokemonNameListInit();
-    getPokemonDataListInit();
+    getPokemonUrlListInit();
   }, []);
 
   return (
@@ -37,13 +37,7 @@ const MainPage = () => {
       <div className="flex justify-center m-5">
         <div className="grid grid-cols-5 gap-4 p-4">
           {pokemonData.map((data) => {
-            return (
-              <PokemonComponent
-                key={data.id}
-                pokemonNameData={pokemonNameData.filter((nameData) => nameData.id === data.id)}
-                pokemonData={data}
-              />
-            );
+            return <PokemonComponent urls={data} />;
           })}
         </div>
       </div>

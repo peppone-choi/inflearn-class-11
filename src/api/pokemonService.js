@@ -1,13 +1,8 @@
 import { pokemonInstance } from './axios';
 
-export const findPokemonSpice = async (pokemonNumber) => {
+export const bindPokemonSpecies = (data) => {
   try {
-    const {
-      id,
-      name,
-      names,
-      flavor_text_entries: flavorTexts,
-    } = (await pokemonInstance.get(`/pokemon-species/${pokemonNumber}`)).data;
+    const { id, name, names, flavor_text_entries: flavorTexts } = data;
     const koreanFlavorText = flavorTexts
       .find((langs) => langs.language.name === 'ko' && langs.version.name === 'y')
       ?.flavor_text.replaceAll('\n', ' ');
@@ -25,9 +20,8 @@ export const findPokemonSpice = async (pokemonNumber) => {
   }
 };
 
-export const findPokemonByNumber = async (pokemonNumber) => {
+export const bindPokemonData = async (data) => {
   try {
-    const { data } = await pokemonInstance.get(`/pokemon/${pokemonNumber}/`);
     const {
       id,
       abilities,
@@ -41,7 +35,16 @@ export const findPokemonByNumber = async (pokemonNumber) => {
       types,
       weight,
     } = data;
-    const abilityNames = abilities.map((ability) => ability.ability.name);
+    const urls = abilities.map((ability) => {
+      return ability.ability.url;
+    });
+    const abilityKoreanNamesPromise = Promise.all(
+      urls.map(async (url) => {
+        const { names } = (await pokemonInstance.get(url)).data;
+        return names.find((name) => name.language.name === 'ko')?.name;
+      }),
+    );
+    const abilityKoreanNames = await abilityKoreanNamesPromise;
     const bindedStats = stats.map((stat) => {
       return {
         name: stat.stat.name,
@@ -50,7 +53,7 @@ export const findPokemonByNumber = async (pokemonNumber) => {
     });
     const pokemonData = {
       id,
-      abilityNames,
+      abilityKoreanNames,
       image,
       height,
       bindedStats,
@@ -64,16 +67,10 @@ export const findPokemonByNumber = async (pokemonNumber) => {
   }
 };
 
-export const getPokemonNameList = async (start, limit) => {
+export const getPokemonSpeciesList = async (start, limit) => {
   try {
     const { results } = (await pokemonInstance.get(`/pokemon-species/?offset=${start - 1}&limit=${limit}`)).data;
-    const promises = [];
-    results.forEach((result) => {
-      const number = result.url.split('/')[6];
-      promises.push(findPokemonSpice(number));
-    });
-    const pokemonNameDataList = await Promise.all(promises);
-    return pokemonNameDataList;
+    return results;
   } catch (error) {
     console.error(error);
     return null;
@@ -82,12 +79,7 @@ export const getPokemonNameList = async (start, limit) => {
 
 export const getPokemonDataList = async (start, end) => {
   try {
-    const promises = [];
-    for (let i = start; i <= end; i += 1) {
-      const data = findPokemonByNumber(i);
-      promises.push(data);
-    }
-    const results = await Promise.all(promises);
+    const { results } = (await pokemonInstance.get(`/pokemon/?offset=${start - 1}&limit=${end}`)).data;
     return results;
   } catch (error) {
     console.error(error);

@@ -165,28 +165,11 @@
     {
       "type": "stellar",
       "name": "스텔라",
-      "tag": [
-        { "hex": "ceb344", "from": 0, "to": 8 },
-        { "hex": "d09949", "from": 8, "to": 15 },
-        { "hex": "ce684c", "from": 15, "to": 19 },
-        { "hex": "c9606e", "from": 19, "to": 22 },
-        { "hex": "b975a9", "from": 22, "to": 25 },
-        { "hex": "9f5b89", "from": 25, "to": 28 },
-        { "hex": "694d94", "from": 28, "to": 31 },
-        { "hex": "63537a", "from": 31, "to": 35 },
-        { "hex": "596677", "from": 35, "to": 42 },
-        { "hex": "5f708d", "from": 42, "to": 50 },
-        { "hex": "4887be", "from": 50, "to": 58 },
-        { "hex": "3d9cc4", "from": 58, "to": 65 },
-        { "hex": "428dc4", "from": 65, "to": 69 },
-        { "hex": "457cbb", "from": 69, "to": 72 },
-        { "hex": "4095b9", "from": 72, "to": 75 },
-        { "hex": "61b7c2", "from": 75, "to": 78 },
-        { "hex": "56c267", "from": 78, "to": 81 },
-        { "hex": "a5b65b", "from": 81, "to": 85 },
-        { "hex": "aaaf80", "from": 85, "to": 92 },
-        { "hex": "b69867", "from": 92, "to": 0 }
-      ]
+      "hex": {
+        "light": "000000",
+        "normal": "000000",
+        "dark": "000000"
+      }
     },
     {
       "type": "unknown",
