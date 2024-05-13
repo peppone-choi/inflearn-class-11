@@ -8,8 +8,11 @@ import pokemonTypes from '../assets/pokemon-type.json';
 const MainPage = () => {
   const [search, setSearch] = React.useState('');
   const [pokemonData, setPokemonData] = React.useState([]);
-  const [renderedPokemonNumber, setRenderedPokemonNumber] = React.useState(20);
+  const [renderedPokemonNumber, setRenderedPokemonNumber] = React.useState(0);
+  let inited = false;
   const getPokemonUrlListInit = async () => {
+    setRenderedPokemonNumber(0);
+    setPokemonData([]);
     const pokemonSpeciesList = await getPokemonSpeciesList(
       pokemonInitConfig.pokemonInitStart,
       pokemonInitConfig.pokemonInitEnd,
@@ -26,11 +29,13 @@ const MainPage = () => {
       };
     });
     setPokemonData(urlList);
+    setRenderedPokemonNumber(pokemonInitConfig.pokemonInitEnd);
+    inited = true;
   };
 
   const morePokemon = async () => {
-    const pokemonSpeciesList = await getPokemonSpeciesList(renderedPokemonNumber + 1, 20);
-    const pokemonDataList = await getPokemonDataList(renderedPokemonNumber + 1, 20);
+    const pokemonSpeciesList = await getPokemonSpeciesList(renderedPokemonNumber + 1, pokemonInitConfig.perPage);
+    const pokemonDataList = await getPokemonDataList(renderedPokemonNumber + 1, pokemonInitConfig.perPage);
     const urlList = pokemonDataList.map((object, index) => {
       return {
         name: object.name,
@@ -39,14 +44,31 @@ const MainPage = () => {
       };
     });
     setPokemonData([...pokemonData, ...urlList]);
-    setRenderedPokemonNumber(renderedPokemonNumber + 20);
+    setRenderedPokemonNumber(renderedPokemonNumber + pokemonInitConfig.perPage);
   };
 
   useEffect(() => {
-    getPokemonUrlListInit();
+    if (!inited) {
+      getPokemonUrlListInit();
+    }
   }, []);
 
-  useEffect(() => {}, [renderedPokemonNumber]);
+  const onSearchingHandler = (name) => {
+    if (name === '') {
+      getPokemonUrlListInit();
+    } else {
+      setPokemonData([]);
+      const filteredPokemonData = pokemonData.filter((data) => {
+        return data.name.toString().includes(name);
+      });
+      setPokemonData(filteredPokemonData);
+      console.log(pokemonData);
+    }
+  };
+
+  useEffect(() => {
+    onSearchingHandler(search);
+  }, [search]);
 
   return (
     <div className="block">
