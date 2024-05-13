@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { googleInstance } from '../api/axios';
 
@@ -7,8 +7,9 @@ const Nav = () => {
   const parsedHash = new URLSearchParams(window.location.hash.substring(1));
   const accessToken = parsedHash.get('access_token');
   const [profileClicked, setProfileClicked] = useState(false);
+  const [scroll, setScroll] = useState(false);
   const navigate = useNavigate();
-  useState(() => {
+  useEffect(() => {
     if (accessToken && !loginInfo.email) {
       googleInstance
         .get('/userinfo', {
@@ -23,7 +24,19 @@ const Nav = () => {
         });
     } else if (localStorage.getItem('loginInfo')) {
       setLoginInfo(JSON.parse(localStorage.getItem('loginInfo')));
+    } else {
+      setLoginInfo({});
     }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+    });
   }, []);
 
   const handleLogout = () => {
@@ -38,12 +51,15 @@ const Nav = () => {
   };
 
   return (
-    <div data-testid="test-nav" className="sticky top-0 flex items-center justify-between w-full h-28">
+    <div
+      data-testid="test-nav"
+      className={`${scroll && 'bg-black'} sticky top-0 flex items-center justify-between w-full h-20`}
+    >
       <button type="button" className="ml-4 h-14">
         <img
           alt="포켓몬 로고"
           className="h-14"
-          src="https://imguscdn.gamespress.com/cdn/files/PokemonAmerica/2019/07/09125735-7b00e266-d991-41da-9267-843e49ce62a7/Pokemon_Logo.jpg?w=240&mode=max&otf=y&quality=90&format=jpg&bgcolor=white&ex=2024-07-01+03%3A00%3A00&sky=caba7d25fcb155e91575db755e0eb78d70378256f82924d971f8982c74e4a388"
+          src="https://assets.pokemon.com/assets/cms2-en-uk/img/misc/gus/buttons/logo-pokemon-79x45.png"
         />
       </button>
       <button
