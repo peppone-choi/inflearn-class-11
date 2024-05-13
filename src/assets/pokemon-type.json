@@ -1,5 +1,5 @@
 {
-  "color": [
+  "pokemonTypes": [
     {
       "type": "normal",
       "name": "노말",

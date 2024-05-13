@@ -5,7 +5,6 @@ import App from './App';
 import '@testing-library/jest-dom/extend-expect';
 import { getPokemonDataList } from './api/pokemonService';
 import pokemonList from './mock/pokemon-list.json';
-import pokemonSpeciesList from './mock/pokemon-spices-list.json';
 
 test('App 컴포넌트가 불러와지면, 네비게이션바가 출력된다.', () => {
   // Arrange
